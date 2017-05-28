@@ -26,7 +26,8 @@ RUN rm /usr/bin/python && \
 
 # Setup a demo Django site
 RUN cd /www; django-admin.py startproject my_django_project && \
-	cd /www/my_django_project; python34 manage.py startapp my_django_app
+	cd /www/my_django_project; python34 manage.py startapp my_django_app && \
+	cd /www/my_django_project; python34 manage.py migrate
 
 # Move our configuration files into container
 COPY nginx.conf /etc/nginx/nginx.conf
@@ -42,4 +43,4 @@ RUN echo 'STATIC_ROOT = "/www/my_django_project/static_files/"' >> /www/my_djang
 CMD cd /www/my_django_project/; uwsgi --uid nginx --socket /tmp/uwsgi.sock --module my_django_project.wsgi >/tmp/uwsgi.log 2>&1 & \
 	sleep 1 && \
 	nginx >/tmp/nginx.log 2>&1 & \
-	printf "\nNginx startup logs found in /tmp/nginx.log\nuWSGI startup logs found in /tmp/uwsgi.log\n\n"; sh
+	printf "\nNginx startup logs found in /tmp/nginx.log\nuWSGI startup logs found in /tmp/uwsgi.log\nrun 'python manage.py createsuperuser' to set django admin credentials. Also remember to set the owner of db.sqlite3 to nginx.\n\n"; sh

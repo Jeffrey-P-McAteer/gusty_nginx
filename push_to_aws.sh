@@ -27,6 +27,7 @@ while getopts ":k:hH:u:" opt; do
 		;;
 		H)
 			AWS_HOST="$OPTARG"
+		;;
 		u)
 			REMOTE_USER="$OPTARG"
 		;;

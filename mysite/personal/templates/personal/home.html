@@ -1,0 +1,31 @@
+{% extends "personal/header.html" %}
+
+{% block content %}
+{% load static %}
+<center>
+<h2>Welcome to <img alt="dotBike" src="{% static 'personal/img/dotBikeSmallColor.png' %}" /> website!</h2>
+</center>
+<br> <br>
+<!--
+behaviors for marquee
+behavior="scroll" - continous movement in direction
+behavior="slide"  - one time movement in direction
+behavior="alternate" - continuous movement alternating direction
+-->
+<marquee scrollamount="10"
+direction="left"
+behavior="scroll"
+>
+<p> <img alt="giraffeOnBike" src="{% static 'personal/img/giraffeOnBike.png' %}" /> </p>
+</marquee>
+
+{% include "personal/includes/htmlsnippet.html" %}
+
+<script>
+  $(".nav").find(".active").removeClass("active");
+  $(this).parent().addClass("active");
+</script>
+
+
+{% endblock %}
+

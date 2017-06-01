@@ -1,0 +1,8 @@
+{% extends "personal/header.html" %}
+
+{% block content %}
+    <h2>About gustyDotBike.</h2>
+    {% for c in content %}
+        <p>{{c}}</p>
+    {% endfor %}
+{% endblock %}

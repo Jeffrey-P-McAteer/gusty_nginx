@@ -25,6 +25,7 @@ RUN rm /usr/bin/python && \
 	ln -s /usr/bin/python34 /usr/bin/python
 
 # Setup a demo Django site
+# Gusty's comment on django admint setup
 RUN cd /www; django-admin.py startproject my_django_project && \
 	cd /www/my_django_project; python34 manage.py startapp my_django_app && \
 	cd /www/my_django_project; python34 manage.py migrate
